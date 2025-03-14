@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    
+    <h1>SSH (Secure Shell) Guide</h1>
+    <p>SSH, also known as Secure Shell or Secure Socket Shell, is a cryptographic network protocol that provides secure encrypted communications between two untrusted hosts over an insecure network.</p>
+    
+    <h2>Install OpenSSH Server Software Package</h2>
+    <pre># yum –y install openssh openssh-server openssh-clients</pre>
+    
+    <h2>Default Port</h2>
+    <p>22</p>
+    
+    <h2>Configuration Files</h2>
+    <pre>/etc/ssh/sshd_config
+/etc/ssh/ssh_config</pre>
+    
+    <h2>Service Name</h2>
+    <p>sshd</p>
+    
+    <h2>Starting SSH Service</h2>
+    <pre>sudo systemctl start sshd</pre>
+    
+    <h2>Check sshd Status</h2>
+    <pre>sudo systemctl status sshd</pre>
+    
+    <h2>Enable OpenSSH Service</h2>
+    <pre>sudo systemctl enable sshd</pre>
+    
+    <h2>Disable SSH After Reboot</h2>
+    <pre>sudo systemctl disable sshd</pre>
+    
+    <h2>OpenSSH Server Configuration</h2>
+    <pre>vim /etc/ssh/sshd_config
+PermitRootLogin no
+Port 2002
+AllowUsers user3
+echo "DenyUsers user1" >> /etc/ssh/sshd_config</pre>
+    
+    <h2>SSH Command Examples</h2>
+    <pre># ssh user_name@server_IP (or) server_name
+# ssh balaji@192.168.44.11</pre>
+    
+    <h2>Command Execution Over SSH</h2>
+    <pre># ssh balaji@192.168.44.11 uname
+# ssh balaji@vm-1.glotech.com "uname;hostname;date"
+# ssh balaji@192.168.44.11 "uptime && free -m"
+# ssh balaji@192.168.44.11 "top -bc | head -n 35" > /tmp/top-output.txt</pre>
+    
+    <h2>Secure Copy (SCP)</h2>
+    <h3>Copy File to Remote Server</h3>
+    <pre># scp /root/securefile root@192.168.44.11:/tmp</pre>
+    
+    <h3>Copy Directory to Remote Server</h3>
+    <pre># scp -r /tmp/dir1 madhu@192.168.44.11:/home/madhu</pre>
+    
+    <h3>Copy File from Remote Server to Local Server</h3>
+    <pre># scp root@192.168.44.11:/tmp/file1 /media/file2</pre>
+    
+    <h3>Copy Directory from Remote Server to Local Server</h3>
+    <pre># scp -r root@192.168.44.11:/tmp/dir1 /mnt</pre>
+    
+    <h2>Configure Password-less SSH Session (Key-Based Authentication)</h2>
+    <h3>Generate Public-Private Key Pair</h3>
+    <pre># ssh-keygen</pre>
+    
+    <h3>Add Public Key to Remote Host</h3>
+    <pre># ssh-copy-id -i ~/.ssh/id_rsa.pub balaji@192.168.44.11</pre>
+    
+    <h2>SSH Directory for Users</h2>
+    <pre>root - /root/.ssh
+user1 - /home/user1/.ssh</pre>
+    
+    <h2>SFTP (Secure File Transfer Protocol)</h2>
+    <pre>sftp root@192.168.1.10</pre>
+    
+    <h2>File Transfer Using SFTP and SCP</h2>
+    <p>Windows ↔ Linux file transfer tools:</p>
+    <ul>
+        <li>WinSCP</li>
+        <li>FileZilla</li>
+    </ul>
+    
+    <h2>SSH Key Files</h2>
+    <pre>id_rsa (Private Key)
+id_rsa.pub (Public Key)
+authorized_keys</pre>
+</body>
+</html>

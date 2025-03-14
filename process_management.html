@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Linux Process Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+   
+    <h1>Linux Process Management</h1>
+    <h2>What is a Process</h2>
+    <p>An instance of a program is called a Process. In simple terms, any command that you give to your Linux machine starts a new process.</p>
+    
+    <h2>Types of Processes in Linux</h2>
+    <h3>Foreground Processes</h3>
+    <p>They run on the screen and need input from the user. For example, Office Programs.</p>
+    <h3>Background Processes</h3>
+    <p>They run in the background and usually do not need user input. For example, Antivirus.</p>
+    
+    <h2>To list the processes</h2>
+    <pre># top<br># ps -efa<br># ps -ef</pre>
+    
+    <h2>To list all running processes</h2>
+    <pre># ps -aux | less</pre>
+    
+    <h2>To list a specific user's processes</h2>
+    <pre># ps -u username</pre>
+    
+    <h2>To customize the output of ps -aux</h2>
+    <pre># ps -eo user,cpu,cmd</pre>
+    
+    <h2>Process Status</h2>
+    <ul>
+        <li>R: Running</li>
+        <li>S: Sleeping</li>
+        <li>D: Uninterruptible sleep</li>
+        <li>T: Traced (stopped state)</li>
+        <li>Z: Zombie</li>
+    </ul>
+    
+    <h2>Parent and Child Processes</h2>
+    <p>Every Linux process has two IDs: the Process ID (pid) and the Parent Process ID (ppid).</p>
+    
+    <h2>Daemon Processes</h2>
+    <p>System-related background running processes. If a process has a '?' in the TTY field, it is a daemon process.</p>
+    
+    <h2>Zombie Processes</h2>
+    <p>Dead processes that still appear in the process list with a 'Z' state.</p>
+    
+    <h2>Scheduling Priorities</h2>
+    <p>Each process has a scheduling priority called a 'Nice Value', ranging from -20 (high priority) to 19 (low priority).</p>
+    
+    <h2>Useful Commands</h2>
+    <ul>
+        <li><b>bg</b> - Send a process to the background</li>
+        <li><b>fg</b> - Run a stopped process in the foreground</li>
+        <li><b>top</b> - Details on all active processes</li>
+        <li><b>ps</b> - Status of processes running for a user</li>
+        <li><b>kill PID</b> - Kills a process</li>
+        <li><b>nice</b> - Starts a process with a given priority</li>
+        <li><b>renice</b> - Changes priority of an already running process</li>
+        <li><b>df</b> - Shows free hard disk space</li>
+        <li><b>free</b> - Shows free RAM</li>
+    </ul>
+</body>
+</html>

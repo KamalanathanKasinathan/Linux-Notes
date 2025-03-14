@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logical Volume Manager (LVM)</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    <h1>Logical Volume Manager (LVM)</h1>
+    <h2>What is LVM?</h2>
+    <p>LVM stands for Logical Volume Manager. To resize a file system’s size online, we require an LVM partition in Linux. The size of an LVM partition can be extended and reduced using the <code>lvextend</code> & <code>lvreduce</code> commands, respectively.</p>
+    
+    <h2>Basic Concepts</h2>
+    <ul>
+        <li><strong>Physical Volume (PV)</strong>: A raw hard drive initialized for use with LVM (e.g., <code>/dev/sdb</code>, <code>/dev/sdc</code>).</li>
+        <li><strong>Volume Group (VG)</strong>: A collection of PVs combined into a single VG.</li>
+        <li><strong>Logical Volume (LV)</strong>: A portion of a VG, which can be resized dynamically.</li>
+    </ul>
+
+    <h2>Filesystem Structures</h2>
+    <p><strong>Partitions-based Filesystem:</strong></p>
+    <pre>Hard Disks → Partitions → Filesystem → Mount</pre>
+    <p><strong>LVM-based Filesystem:</strong></p>
+    <pre>Hard Disks → Partitions → Physical Volume → Volume Group → Logical Volume → Filesystem → Mount</pre>
+
+    <h2>Creating LVM</h2>
+    <h3>Creating a Physical Volume</h3>
+    <pre># pvcreate /dev/sdb1</pre>
+    
+    <h3>Creating a Volume Group</h3>
+    <pre># vgcreate vg_oracle /dev/sdb1</pre>
+    
+    <h3>Creating a Logical Volume</h3>
+    <pre># lvcreate -L +5G -n lv_oracle vg_oracle</pre>
+
+    <h3>Creating a Filesystem</h3>
+    <pre># mkfs.xfs /dev/vg_oracle/lv_oracle</pre>
+    
+    <h3>Mounting the Filesystem</h3>
+    <pre># mkdir /oracle_data
+# mount /dev/vg_oracle/lv_oracle /oracle_data</pre>
+
+    <h2>Checking Mounted Filesystem</h2>
+    <pre># df -h</pre>
+
+    <h2>Listing PV, VG, and LV Details</h2>
+    <pre># pvdisplay
+# vgdisplay
+# lvdisplay</pre>
+
+    <h2>Removing LVM</h2>
+    <pre># umount /oracle_data
+# lvremove /dev/vg_oracle/lv_oracle
+# vgremove /dev/vg_oracle
+# pvremove /dev/sdb1</pre>
+
+    <h2>Reducing LVM Partition Size</h2>
+    <ol>
+        <li>Unmount the filesystem: <pre># umount /oracle_data</pre></li>
+        <li>Check for errors: <pre># e2fsck -f /dev/vg_oracle/lv_oracle</pre></li>
+        <li>Resize filesystem: <pre># resize2fs /dev/vg_oracle/lv_oracle 3G</pre></li>
+        <li>Reduce LV size: <pre># lvreduce -L 3G /dev/vg_oracle/lv_oracle</pre></li>
+        <li>Check filesystem again: <pre># e2fsck -f /dev/vg_oracle/lv_oracle</pre></li>
+        <li>Mount and verify: <pre># mount /dev/vg_oracle/lv_oracle /oracle_data</pre></li>
+    </ol>
+
+    <h2>Useful Commands</h2>
+    <pre># vgextend
+# lvextend
+# lvreduce
+# lvremove
+# vgrename old_vg_name new_vg_name
+# lvrename vg_name old_lv_name new_lv_name
+# lsblk</pre>
+</body>
+</html>

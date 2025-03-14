@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Yum Repository Configuration</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    
+    <h1>Stop and Disable Firewalld</h1>
+    <pre>
+# systemctl stop firewalld.service
+# systemctl disable firewalld.service
+# systemctl status firewalld.service
+    </pre>
+    
+    <h1>Disable SELINUX</h1>
+    <pre>
+# vi /etc/sysconfig/selinux
+SELINUX=disabled
+# setenforce 0
+# getenforce
+    </pre>
+    
+    <h1>Configure Local Yum Repository</h1>
+    <ol>
+        <li>Attach the ISO image to your system:</li>
+        <pre>select VM --> settings --> CD/DVD(IDE)--> Use ISO image file--> Browse --> select ISO</pre>
+        
+        <li>Confirm that the ISO is in the system:</li>
+        <pre># ls -ld /dev/sr0
+# ls -ld /dev/cdrom</pre>
+        
+        <li>Create a mount point for the ISO:</li>
+        <pre># mkdir /iso</pre>
+        
+        <li>Mount the ISO:</li>
+        <pre># mount /dev/cdrom /iso</pre>
+        
+        <li>Verify the packages file:</li>
+        <pre># cd /iso
+# ls</pre>
+        
+        <li>Copy the ISO image or packages to a directory:</li>
+        <pre>
+# mkdir /var/ftp/pub/AppStream
+# mkdir /var/ftp/pub/BaseOS
+
+# cd /iso
+# cp -rv AppStream/Packages /var/ftp/pub/AppStream/
+# cp -rv BaseOS/Packages /var/ftp/pub/BaseOS/
+        </pre>
+        
+        <li>If <code>createrepo</code> is not installed, install and create the repository:</li>
+        <pre>
+# cd /iso/AppStream/Packages
+# rpm -ivh createrepo_c-0.11.0-1.el8.x86_64.rpm createrepo_c-libs-0.11.0-1.el8.x86_64.rpm drpm-0.3.0-14.el8.x86_64.rpm
+# createrepo -v /var/ftp/pub/AppStream/Packages/
+# createrepo -v /var/ftp/pub/BaseOS/Packages/
+        </pre>
+        
+        <li>Create the repository configuration file:</li>
+        <pre>
+# cd /etc/yum.repos.d
+# vi local.repo
+        </pre>
+        <pre>
+[Localrepo_BaseOS]
+name=Localrepo_BaseOS
+baseurl=file:///var/ftp/pub/BaseOS/Packages
+enabled=1
+gpgcheck=0
+
+[Localrepo_AppStream]
+name=Localrepo_AppStream
+baseurl=file:///var/ftp/pub/AppStream/Packages
+enabled=1
+gpgcheck=0
+        </pre>
+        
+        <li>If using an FTP server:</li>
+        <pre>
+# yum install vsftpd -y
+# vi /etc/vsftpd/vsftpd.conf
+anonymous_enable=YES
+# systemctl start vsftpd; systemctl enable vsftpd
+        </pre>
+        <pre>
+[FTPrepo_BaseOS]
+name=FTPrepo_BaseOS
+baseurl=ftp://192.168.170.165/pub/BaseOS/Packages
+enabled=1
+gpgcheck=0
+
+[FTPrepo_AppStream]
+name=FTPrepo_AppStream
+baseurl=ftp://192.168.170.165/pub/AppStream/Packages
+enabled=1
+gpgcheck=0
+        </pre>
+        
+        <li>Confirm the repository has been configured:</li>
+        <pre>
+# yum clean all
+# yum repolist
+# yum list all
+# yum install nfs-utils
+# yum install samba
+        </pre>
+    </ol>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users and Group Administration in Linux</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+   
+    <h1>USERS AND GROUP ADMINISTRATION IN LINUX</h1>
+    <hr>
+    <p><strong>User:</strong> A person who utilizes the Operating System services is a user.</p>
+    <p><strong>Group:</strong> A group is a collection of users.</p>
+    
+    <h2>Linux Users</h2>
+    <ul>
+        <li><strong>Super user or root user (0):</strong> The user with all permissions, access, and privileges.</li>
+        <li><strong>Static system user (1-200):</strong> The user created by the Operating System automatically, like daemon user or binary user.</li>
+        <li><strong>System user (201-999):</strong> The user created when we install any package like DNS, HTTP (Apache), and chronyd because these services and daemons run as a system user.</li>
+        <li><strong>Normal user (1000-60000):</strong> Manually created users are normal users. They do not have many privileges, access, and permissions.</li>
+    </ul>
+    
+    <h2>Main User and Group Administration Files</h2>
+    <ul>
+        <li>/etc/passwd</li>
+        <li>/etc/group</li>
+        <li>/etc/shadow</li>
+        <li>/etc/gshadow</li>
+        <li>/etc/login.defs</li>
+        <li>usedadd -D</li>
+        <li># cat /etc/default/useradd</li>
+    </ul>
+    
+    <h2>To See User Related Logs</h2>
+    <pre># cat /var/log/secure | tail -2</pre>
+    <pre># ls -l /home</pre>
+    
+    <h2>Fields in Below Files</h2>
+    <ul>
+        <li><strong>/etc/passwd</strong> - Username: User's password mask: UID: GID: User Comment: Home directory of user: Default log-in shell</li>
+        <li><strong>/etc/shadow</strong> - Username: Encrypted password: Last password change: Minimum: Maximum: Warning days: Inactive: Expire: Reserved</li>
+        <li><strong>/etc/group</strong> - Groupname: Password: GID: Members of group</li>
+        <li><strong>/etc/gshadow</strong> - Groupname: Group password: Group ID admin: Members of group</li>
+    </ul>
+    
+    <h2>Commands</h2>
+    <h3>Create a User Account</h3>
+    <pre># useradd username</pre>
+    
+    <h3>See User Information</h3>
+    <pre># cat /etc/passwd</pre>
+    
+    <h3>Check User ID (UID) and Group ID (GID)</h3>
+    <pre># id username</pre>
+    <pre># id -un username</pre>
+    <pre># id -gn username</pre>
+    
+    <h3>Set User's Password</h3>
+    <pre># passwd username</pre>
+    
+    <h3>See User Password Information</h3>
+    <pre># cat /etc/shadow</pre>
+    
+    <h3>Remove User Password</h3>
+    <pre># passwd -d username</pre>
+    
+    <h3>Delete a User Account</h3>
+    <pre># userdel username</pre>
+    
+    <h3>Delete a User Account with Home and Mail Directory</h3>
+    <pre># userdel --remove username</pre>
+    <pre># userdel -r username</pre>
+    
+    <h3>Edit User's Default Parameters</h3>
+    <pre># vim /etc/default/useradd</pre>
+    
+    <h3>List Currently Logged-in Users</h3>
+    <pre># w</pre>
+    <pre># who</pre>
+    <pre># whoami</pre>
+    <pre># who am i</pre>
+    
+    <h3>Create a Group</h3>
+    <pre># groupadd groupname</pre>
+    
+    <h3>See Group Information</h3>
+    <pre># cat /etc/group</pre>
+    
+    <h3>Add User to a Group (Secondary Group)</h3>
+    <pre># gpasswd -a user group</pre>
+    <pre># usermod -a -G group user</pre>
+    
+    <h3>Remove User from a Group</h3>
+    <pre># gpasswd -d user group</pre>
+    
+    <h3>Change User's Primary Group</h3>
+    <pre># usermod -g groupname/id username</pre>
+    
+    <h3>Remove a Group</h3>
+    <pre># groupdel groupname</pre>
+    
+    <h3>Check Password Status</h3>
+    <pre># passwd -S &lt;username&gt;</pre>
+    
+    <h3>Change Ownership of File/Folder</h3>
+    <pre># chown username file/folder</pre>
+    
+    <h3>Change Group Ownership of File/Folder</h3>
+    <pre># chgrp groupname file/folder</pre>
+    
+    <h3>Change Ownership and Group Ownership of File/Folder</h3>
+    <pre># chown username:groupname file/folder</pre>
+</body>
+</html>

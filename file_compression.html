@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ZIP, GZIP, and TAR Commands</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    <h1>ZIP</h1>
+    <h2>Create a ZIP Archive</h2>
+    <pre># touch file{1..5}.txt
+zip files file1.txt file2.txt file3.txt file4.txt file5.txt</pre>
+    
+    <h2>List ZIP File Contents</h2>
+    <pre>zip -sf files.zip</pre>
+    
+    <h2>Add Specific File Types to ZIP Archive</h2>
+    <pre>zip files *.txt</pre>
+    
+    <h2>Add a Directory to ZIP Archive</h2>
+    <pre>zip -r files &lt;directory&gt;</pre>
+    
+    <h2>Delete Files From ZIP Archive</h2>
+    <pre>zip -sf &lt;archive file&gt;
+zip -d &lt;archive file&gt; &lt;files for deletion&gt;
+zip -d files.zip file5.txt</pre>
+    
+    <h2>Handling Large Files</h2>
+    <pre>fallocate -l 1G testfile
+zip test.zip testfile
+ls -lh
+
+unzip test.zip
+ls -lh</pre>
+    
+    <h1>GZIP</h1>
+    <h2>Compressing Files</h2>
+    <pre>gzip filename
+gzip file1 file2 file3 file4</pre>
+    
+    <h2>Keep the Original File</h2>
+    <pre>gzip -k filename</pre>
+    
+    <h2>Verbose Output</h2>
+    <pre>gzip -v filename</pre>
+    
+    <h2>Compress All Files in a Directory</h2>
+    <pre>gzip -r directory</pre>
+    
+    <h2>Decompressing Files</h2>
+    <pre>gzip -d filename.gz
+gunzip filename.gz</pre>
+    
+    <h2>Decompress Multiple Files</h2>
+    <pre>gzip -d file1.gz file2.gz file3.gz</pre>
+    
+    <h2>Decompress All Files in a Directory</h2>
+    <pre>gzip -dr directory</pre>
+    
+    <h2>Keep the Compressed File</h2>
+    <pre>gzip -dk filename.gz</pre>
+    
+    <h2>List the Compressed File Contents</h2>
+    <pre>gzip -l filename
+gzip -lv filename</pre>
+    
+    <h1>TAR</h1>
+    <h2>Create a tar Archive File</h2>
+    <pre>tar -cvf etc-backup-14-09-12.tar /etc</pre>
+    
+    <h2>Create tar.gz Archive File</h2>
+    <pre>tar -cvzf etc-backup-14-09-12.tar.gz /etc</pre>
+    
+    <h2>Create tar.bz2 Archive File</h2>
+    <pre>tar -cvfj etc-backup.tar.bz2 /etc</pre>
+    
+    <h2>Untar tar Archive File</h2>
+    <pre>tar -xvf etc-backup.tar</pre>
+    
+    <h2>Untar to a Specified Directory</h2>
+    <pre>tar -xvf etc-backup.tar -C /mnt</pre>
+    
+    <h2>Untar Single File</h2>
+    <pre>tar -xvf etc-backup.tar passwd group</pre>
+    
+    <h2>List Content of tar Archive File</h2>
+    <pre>tar -tvf backup.tar</pre>
+    
+    <h2>Add Files or Directories to tar Archive File</h2>
+    <pre>tar -rvf backup.tar file1 file2</pre>
+    
+    <h2>Remove File and Directory from Tar Archive</h2>
+    <pre>tar --delete -f backup.tar.gz file1.txt
+tar --delete -f backup.tar.gz '/home/tecmint/uploads'</pre>
+</body>
+</html>

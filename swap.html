@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWAP Memory Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    
+    <h1>SWAP</h1>
+    <p>Swap is a space on a disk that is used when the amount of physical RAM memory is full. When a Linux system runs out of RAM, inactive pages are moved from the RAM to the swap space.</p>
+    <p>Swap space can take the form of either a dedicated swap partition or a swap file. In most cases, when running CentOS on a virtual machine, a swap partition is not present, so the only option is to create a swap file.</p>
+
+    <h2>Creating a Swap Partition</h2>
+    <pre>
+# fdisk /dev/sdb
+# lsblk
+# mkswap /dev/sdb1
+# swapon /dev/sdb1
+# swapon --summary
+# free -m
+
+# vi /etc/fstab
+/dev/sdb1               swap                    swap    defaults        0 0
+    </pre>
+    
+    <h2>Creating a Swap File</h2>
+    <pre>
+# fallocate -l 2G /swapfile01
+(or)
+# dd if=/dev/zero of=/swapfile01 bs=1G count=10
+
+# chmod 600 /swapfile01
+# mkswap /swapfile01
+# swapon /swapfile01
+
+# vi /etc/fstab
+/swapfile01 swap swap defaults 0 0
+(or)
+/swapfile swap swap prio=10 0 0
+
+# swapon --show  (or) swapon -s
+# free -h
+# cat /proc/swaps
+    </pre>
+
+    <h2>Adjusting the Swappiness Value</h2>
+    <p>Swappiness is a Linux kernel property that defines how often the system will use the swap space. It can have a value between 0 and 100.</p>
+    <p>The default swappiness value:</p>
+    <ul>
+        <li>CentOS 7: 30</li>
+        <li>CentOS 9: 60</li>
+    </ul>
+    <pre>
+# sysctl vm.swappiness
+# cat /proc/sys/vm/swappiness
+    </pre>
+
+    <h2>Temporary Swappiness Value Change</h2>
+    <pre>
+# echo 40 > /proc/sys/vm/swappiness
+# sysctl -w vm.swappiness=50
+    </pre>
+
+    <h2>Permanent Swappiness Value Change</h2>
+    <pre>
+# vi /etc/sysctl.conf
+vm.swappiness=50
+# sysctl -p
+    </pre>
+
+    <h2>Removing a Swap Space</h2>
+    <pre>
+# swapoff /dev/sdb1
+# swapoff -v /swapfile
+
+(remove the swap file entry from /etc/fstab)
+# rm /swapfile
+    </pre>
+
+    <h2>Red Hat SWAP Memory Recommendation</h2>
+    <ul>
+        <li>2GB of RAM requires 2 times the amount of RAM (2X RAM).</li>
+        <li>2GB-8GB RAM requires an equal amount of RAM.</li>
+        <li>8GB to 64GB of RAM requires 0.5 times the amount of RAM.</li>
+        <li>64GB+ RAM requires 4GB of swap space.</li>
+    </ul>
+</body>
+</html>

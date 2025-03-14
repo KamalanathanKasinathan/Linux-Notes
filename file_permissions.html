@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux File Permissions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    <h1>Linux File Permissions</h1>
+    <h2>Types of Permissions</h2>
+    <ul>
+        <li>Basic file/folder permissions</li>
+        <li>Special file/folder permissions</li>
+        <li>Access control list (ACL)</li>
+    </ul>
+
+    <h2>Basic File/Folder Permissions</h2>
+    <h3>Checking Default Permissions</h3>
+    <pre>
+    # ls -l
+    # ll
+    </pre>
+
+    <h3>Fields in ls -l Command Output</h3>
+    <p>&lt;file type&gt; &lt;file permission&gt; &lt;link count&gt; &lt;owner&gt; &lt;group&gt; &lt;file size&gt; &lt;last modify date and time&gt; &lt;file name&gt;</p>
+
+    <h3>File Types and Permissions</h3>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>File Type</th>
+            <th>User</th>
+            <th>Group</th>
+            <th>Others</th>
+        </tr>
+        <tr>
+            <td>d (Directory)</td>
+            <td>rwx</td>
+            <td>r-x</td>
+            <td>r-x</td>
+        </tr>
+        <tr>
+            <td>- (Regular File)</td>
+            <td>rw-</td>
+            <td>r--</td>
+            <td>r--</td>
+        </tr>
+        <tr>
+            <td>l (Symbolic Link)</td>
+            <td>rwx</td>
+            <td>rwx</td>
+            <td>rwx</td>
+        </tr>
+    </table>
+
+    <h3>ls Command Options</h3>
+    <pre>
+    # ls -iadRrlt
+    </pre>
+    <ul>
+        <li><b>i</b> - List the file's inode number</li>
+        <li><b>a</b> - List hidden files and folders</li>
+        <li><b>d</b> - List only directories</li>
+        <li><b>R</b> - List the tree structure of a directory</li>
+        <li><b>l</b> - List all information about files and folders</li>
+        <li><b>r</b> - List files and folders in reverse order</li>
+        <li><b>t</b> - List files and folders according to timestamp</li>
+    </ul>
+
+    <h3>File Permissions</h3>
+    <p><b>Read</b>: Permission to read file content</p>
+    <p><b>Write</b>: Permission to modify content</p>
+    <p><b>Execute</b>: Permission to run script</p>
+
+    <h3>Directory Permissions</h3>
+    <p><b>Read</b>: Permission to list contents (ls)</p>
+    <p><b>Write</b>: Permission to create or delete files</p>
+    <p><b>Execute</b>: Permission to change directory</p>
+
+    <h2>Changing Permissions</h2>
+    <pre>
+    # chmod (permission value) <file/directory>
+    </pre>
+    <p>Using two methods:</p>
+    <ul>
+        <li>Octal (Numeric) - 421</li>
+        <li>Symbolic - rwx</li>
+    </ul>
+
+    <h3>Numeric Method Examples</h3>
+    <pre>
+    # chmod 744 <file/directory>
+    # chmod 440 <file/directory>
+    # chmod 244 <file/directory>
+    </pre>
+
+    <h3>Symbolic Method Examples</h3>
+    <pre>
+    # chmod u=rwx,g=rw,o=r <file/directory>
+    # chmod u-x,g-rw,o+r <file/directory>
+    # chmod a=rwx testfile1
+    # chmod a-wx testfile1
+    # chmod a+wx testfile
+    </pre>
+
+    <h2>Default Permissions</h2>
+    <h3>Normal User</h3>
+    <ul>
+        <li>775 - Directory</li>
+        <li>664 - File</li>
+    </ul>
+
+    <h3>Root User</h3>
+    <ul>
+        <li>755 - Directory</li>
+        <li>644 - File</li>
+    </ul>
+
+    <h2>umask - File Creation Mask</h2>
+    <p>Controls default file permissions.</p>
+    <pre>
+    umask value for root user: -022
+    umask value for normal user: -002
+    </pre>
+
+    <h2>Changing Ownership</h2>
+    <pre>
+    # chown <owner>:<group> <file/directory>
+    # chown -R <owner>:<group> <file/directory>
+    # chown <owner> <file/directory>
+    # chown :<group> <file/directory>
+    # chgrp <group> <file/directory>
+    </pre>
+    
+    <h2>Summary of Commands</h2>
+    <ul>
+        <li><b>chmod</b> - Set permissions</li>
+        <li><b>chown</b> - Change file owner and group</li>
+        <li><b>chgrp</b> - Change file group</li>
+    </ul>
+</body>
+</html>

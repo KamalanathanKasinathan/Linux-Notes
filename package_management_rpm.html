@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Package Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    
+    <h1>LINUX PACKAGE MANAGEMENT</h1>
+    
+    <h2>RPM</h2>
+    <p>The RPM Package Manager (RPM) is a powerful package management system used by Red Hat Linux and its derivatives such as CentOS and Fedora.</p>
+    <p>RPM also refers to the rpm command and .rpm file format. An RPM Package consists of an archive of files and metadata including information such as dependencies and install location.</p>
+    
+    <h2>Package Syntax</h2>
+    <pre>
+Package Name-version-Release.Architecture.Extension
+
+RHEL/OEL-9
+acl-2.2.53-1.el9.x86_64.rpm
+
+RHEL/OEL-8
+acl-2.2.53-1.el8.x86_64.rpm
+
+RHEL/OEL-7
+acl-2.2.53-1.el7.x86_64.rpm
+
+RHEL/OEL-6
+acl-2.2.51-1.el6.x86_64.rpm - 64 bit
+acl-2.2.51-1.el6.i386.rpm - 32 bit
+    </pre>
+    
+    <h2>How to Install an RPM Package</h2>
+    <pre>
+rpm -ivh at-3.1.20-11.el8.x86_64.rpm
+rpm -ivh acl-2.2.53-1.el8.x86_64.rpm at-3.1.20-11.el8.x86_64.rpm
+    </pre>
+    
+    <h2>How to List All Installed RPM Packages</h2>
+    <pre>
+#rpm -qa
+#rpm -qa httpd wget
+rpm -q httpd
+rpm -qa | grep httpd
+rpm -qa | wc -l
+    </pre>
+    
+    <h2>How to Check Dependencies of RPM Package Before Installing</h2>
+    <pre>
+# rpm -qpR createrepo_c-0.11.0-1.el8.x86_64.rpm
+    </pre>
+    
+    <h2>How to Upgrade a RPM Package</h2>
+    <pre>
+rpm -Uvh package.rpm
+    </pre>
+    
+    <h2>Attach ISO disk to VM</h2>
+    <pre>
+select VM => settings => CD/DVD => select use ISO image => select CentOS iso
+
+[root@vm-3 Packages]# mkdir /iso
+[root@vm-3 Packages]# mount /dev/sr0 /iso
+[root@vm-3 Packages]# df -h
+[root@vm-3 Packages]# cd /iso/
+[root@vm-3 iso]# ls -l
+    </pre>
+</body>
+</html>

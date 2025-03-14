@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Task in Linux</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    <h1>Schedule Task in Linux</h1>
+    <h2>What is cron Command?</h2>
+    <p>The <code>cron</code> tool allows Linux users to execute commands or scripts at a specific date and time.</p>
+    <p>It is very useful for performing regular tasks such as backups, daily scans, <code>/tmp</code> cleanup, and restarting the system at a given time.</p>
+    
+    <h2>Cron</h2>
+    <h3>Package Installation</h3>
+    <pre><code># yum install cronie  (or) crontabs</code></pre>
+    
+    <h3>Service Status</h3>
+    <pre><code># systemctl status crond</code></pre>
+    
+    <h2>Edit Crontab Entries</h2>
+    <pre><code>crontab -e</code></pre>
+    
+    <h3>Example Cron Jobs</h3>
+    <pre><code>* * * * * script.sh > /tmp/script_out
+*/5 * * * *
+0 10 * * *
+30 1 * * *
+30 1,4,5 1-10 * *</code></pre>
+    
+    <h3>Special Time Strings</h3>
+    <pre><code>@daily
+@reboot
+@hourly
+@yearly</code></pre>
+    
+    <h2>List Existing Cron Jobs</h2>
+    <pre><code>crontab -l</code></pre>
+    
+    <h2>Remove Crontab Entry</h2>
+    <pre><code>crontab -r</code></pre>
+    
+    <h2>Edit Crontab for a Different User</h2>
+    <pre><code>crontab -u username -e
+crontab -u username -r
+crontab -u username -l</code></pre>
+    
+    <h2>General Syntax of a Cron Job</h2>
+    <pre><code>MIN   HOUR   Day of Month  Month  Day of Week  Command
+0-59  0-23   1-31         1-12   0-6         Any Linux command or script</code></pre>
+    
+    <h2>Crontab File Locations</h2>
+    <pre><code>/var/spool/cron/user_name
+/var/spool/cron
+/var/log/cron
+/etc/cron.deny
+/etc/cron.allow
+/etc/cron.hourly
+/etc/cron.daily
+/etc/cron.monthly</code></pre>
+    
+    <h2>Important Notes</h2>
+    <ul>
+        <li>Might be affected by different time zones.</li>
+        <li>If the user account and password expire, cron jobs will not work.</li>
+        <li>If the <code>crond</code> service is stopped, cron jobs will not work.</li>
+        <li>If the <code>/var</code> filesystem is 100% full, cron jobs will not work.</li>
+    </ul>
+</body>
+</html>

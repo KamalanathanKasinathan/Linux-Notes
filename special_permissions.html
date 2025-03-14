@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Special Permissions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+   
+    <h1>Special Permissions</h1>
+    <h2>Special File/Folder Permissions</h2>
+    <h3>Types of Special Permissions</h3>
+    <ul>
+        <li>Setuid (SUID) - 4</li>
+        <li>Setgid (SGID) - 2</li>
+        <li>Stickybit - 1</li>
+    </ul>
+    <pre>
+        suid    sgit    stickybit
+        rwx     r-x     r-x
+          s      s       t
+        rws     r-s     r-t
+        rwS     r-S     r-T
+    </pre>
+    <h3>Command Examples</h3>
+    <ul>
+        <li><code>chmod u+s file/directory</code></li>
+        <li><code>chmod g+s file/directory</code></li>
+        <li><code>chmod o+t file/directory</code></li>
+        <li><code>chmod 4755 file</code></li>
+        <li><code>chmod 2755 file</code></li>
+        <li><code>chmod 1744 file</code></li>
+        <li><code>chmod 0755 file</code></li>
+    </ul>
+    <h2>Setuid</h2>
+    <p>Set User ID (SETUID): Whenever SETUID permission has been set on executable files, anyone executing that command (file) will inherit the permissions of the owner of the file. Its numeric value is 4.</p>
+    <pre>
+        #chmod 4755 &lt;filename&gt;
+        #chmod u+s &lt;filename&gt;
+        #chmod u-s &lt;filename&gt;
+    </pre>
+    <h2>SGID</h2>
+    <p>Set Group ID (SETGID): Similar to SETUID, but the process's effective group ID (GID) is changed to the group owner of the file, and a user is granted access based on permissions assigned to that group.</p>
+    <pre>
+        #chmod 2755 &lt;file/dirname&gt;
+        #chmod g+s &lt;file/dirname&gt;
+        #chmod g-s &lt;file/dirname&gt;
+    </pre>
+    <h2>Sticky Bit</h2>
+    <p>If a directory has the sticky bit set, files in that directory can only be deleted by their owner or the root user.</p>
+    <pre>
+        #chmod 1755 &lt;file/dirname&gt;
+        #chmod o+t &lt;file/dirname&gt;
+        #chmod o-t &lt;file/dirname&gt;
+    </pre>
+</body>
+</html>

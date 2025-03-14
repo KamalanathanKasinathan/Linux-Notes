@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Daemons</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+   
+    <h2>Services & Daemons</h2>
+    <p>Daemons are the programs that run in the background performing various tasks.</p>
+
+    <h2>RHEL/OEL/CentOS – 7/8/9</h2>
+
+    <h3>Start and Stop services</h3>
+    <pre>
+# systemctl start crond
+# systemctl start firewalld
+
+# systemctl stop crond
+# systemctl stop firewalld
+    </pre>
+
+    <h3>Restart and Reload services</h3>
+    <pre>
+# systemctl restart crond
+
+To reload all the configuration files forcefully on your system:
+# systemctl reload crond
+    </pre>
+
+    <h3>Enable and Disable services</h3>
+    <pre>
+# systemctl enable crond
+# systemctl enable firewalld
+
+# systemctl disable crond
+# systemctl disable firewalld
+
+# systemctl enable sshd --now
+# systemctl disable sshd --now
+
+# systemctl is-active sshd
+# systemctl is-enabled sshd
+    </pre>
+
+    <h3>List all services</h3>
+    <pre>
+# systemctl list-units --type service --all
+# systemctl list-unit-files --type=service
+    </pre>
+
+    <h3>List of services that are active now</h3>
+    <pre>
+# systemctl -t service
+    </pre>
+
+    <h3>Reload Unit Files</h3>
+    <pre>
+# systemctl daemon-reload
+    </pre>
+
+    <h2>RHEL/OEL/CentOS – 6</h2>
+
+    <h3>Start and Stop services</h3>
+    <pre>
+# service <service name> start/stop
+# service crond start
+# service crond stop
+# service httpd status
+# /etc/init.d/crond start
+# /etc/init.d/httpd stop
+    </pre>
+
+    <h3>Restart and Reload services</h3>
+    <pre>
+# service <service name> restart/reload
+# service crond restart
+# service crond reload
+# service httpd restart
+    </pre>
+
+    <h3>Check and Manage Services</h3>
+    <pre>
+# chkconfig --list | grep sshd
+
+# chkconfig crond on
+# chkconfig crond off
+
+# service --status-all
+# service --status-all | more
+# service --status-all | grep ntpd
+# service --status-all | less
+    </pre>
+</body>
+</html>

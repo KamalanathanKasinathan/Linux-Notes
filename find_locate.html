@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find Command Usage</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    
+    <h1>Find Command Usage</h1>
+    <h2>Locate Files and Directories</h2>
+    <ul>
+        <li><code>locate &lt;dir name&gt;</code></li>
+        <li><code>locate &lt;file name&gt;</code></li>
+    </ul>
+    
+    <h2>Find Files and Directories</h2>
+    <ol>
+        <li>Find Files Using Name in Current Directory: <code>find . -name data.txt</code></li>
+        <li>Find Files Under Home Directory: <code>find /home -name test.txt</code></li>
+        <li>Find Files Using Name and Ignoring Case: <code>find /home -iname data.txt</code></li>
+        <li>Find Directories Using Name: <code>find / -type d -name Data</code></li>
+        <li>Find PHP Files Using Name: <code>find . -type f -name index.php</code></li>
+        <li>Find all PHP Files in the Directory: <code>find . -type f -name "*.php"</code></li>
+        <li>Find Files With 777 Permissions: <code>find . -type f -perm 0777 -print</code></li>
+        <li>Find Files Without 777 Permissions: <code>find / -type f ! -perm 777</code></li>
+        <li>Find SGID Files with 644 Permissions: <code>find / -perm 2644</code></li>
+        <li>Find Sticky Bit Files with 551 Permissions: <code>find / -perm 1551</code></li>
+        <li>Find SUID Files: <code>find / -perm /u=s</code></li>
+        <li>Find SGID Files: <code>find / -perm /g=s</code></li>
+        <li>Find Read-Only Files: <code>find / -perm /u=r</code></li>
+        <li>Find Executable Files: <code>find / -perm /a=x</code></li>
+        <li>Find Files with 777 Permissions and Chmod to 644: <code>find / -type f -perm 0777 -print -exec chmod 644 {} \;</code></li>
+        <li>Find Directories with 777 Permissions and Chmod to 755: <code>find / -type d -perm 777 -print -exec chmod 755 {} \;</code></li>
+        <li>Find and remove single File: <code>find . -type f -name "tecmint.txt" -exec rm -f {} \;</code></li>
+        <li>Find and remove Multiple Files: <code>find . -type f -name "*.txt" -exec rm -f {} \;</code> OR <code>find . -type f -name "*.mp3" -exec rm -f {} \;</code></li>
+        <li>Find all Empty Files: <code>find /tmp -type f -empty</code></li>
+        <li>Find all Empty Directories: <code>find /tmp -type d -empty</code></li>
+        <li>Find all Hidden Files: <code>find /tmp -type f -name ".*"</code></li>
+        <li>Find Single File Based on User: <code>find / -user root -name tecmint.txt</code></li>
+        <li>Find all Files Based on User: <code>find /home -user tecmint</code></li>
+        <li>Find all Files Based on Group: <code>find /home -group developer</code></li>
+        <li>Find Particular Files of User: <code>find /home -user tecmint -iname "*.txt"</code></li>
+        <li>Find Last 50 Days Modified Files: <code>find / -mtime 50</code></li>
+        <li>Find Last 50 Days Accessed Files: <code>find / -atime 50</code></li>
+        <li>Find Last 50-100 Days Modified Files: <code>find / -mtime +50 -mtime -100</code></li>
+        <li>Find Changed Files in Last 1 Hour: <code>find / -cmin -60</code></li>
+        <li>Find Modified Files in Last 1 Hour: <code>find / -mmin -60</code></li>
+        <li>Find Accessed Files in Last 1 Hour: <code>find / -amin -60</code></li>
+        <li>Find 50MB Files: <code>find / -size 50M</code></li>
+        <li>Find Size between 50MB – 100MB: <code>find / -size +50M -size -100M</code></li>
+        <li>Find and Delete 100MB Files: <code>find / -type f -size +100M -exec rm -f {} \;</code></li>
+        <li>Find Specific Files and Delete: <code>find / -type f -name *.mp3 -size +10M -exec rm {} \;</code></li>
+    </ol>
+    
+    <h2>Useful Find Command Options</h2>
+    <ul>
+        <li><code>-type</code></li>
+        <li><code>-size</code></li>
+        <li><code>-user</code></li>
+        <li><code>-group</code></li>
+        <li><code>-perm</code></li>
+        <li><code>-delete</code></li>
+        <li><code>-exec</code></li>
+        <li><code>-print</code></li>
+        <li><code>-mtime</code></li>
+        <li><code>-mmin</code></li>
+        <li><code>-atime</code></li>
+        <li><code>-amin</code></li>
+        <li><code>-cmin</code></li>
+    </ul>
+    <p>Use <code>man find</code> to learn more about these options.</p>
+</body>
+</html>

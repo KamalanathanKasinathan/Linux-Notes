@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User and Group Management Commands</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    
+    <h1>User and Group Management Commands</h1>
+    <h2>To add a user into a group</h2>
+    <pre># useradd -g groupname username</pre>
+
+    <h2>useradd with predefined parameters</h2>
+    <pre># useradd -u 2000 -g 3000 -c 'test user' -d /home/test1 -s /bin/sh username
+# useradd -M
+# useradd -e '2021-12-25' username</pre>
+
+    <h3>Options:</h3>
+    <ul>
+        <li>-l : login name</li>
+        <li>-u : user ID (UID)</li>
+        <li>-g : group ID (GID)</li>
+        <li>-c : user comment</li>
+        <li>-d : home directory</li>
+        <li>-s : shell</li>
+    </ul>
+
+    <h2>usermod Commands</h2>
+    <h3>To rename a user's account name</h3>
+    <pre># usermod -l newname oldname</pre>
+
+    <h3>To change user's UID</h3>
+    <pre># usermod -u 1076 username</pre>
+
+    <h3>To change user's default home directory</h3>
+    <pre># usermod -d /new/directory username</pre>
+
+    <h3>To change the default shell</h3>
+    <pre># usermod -s /bin/sh username</pre>
+
+    <h3>Setting a User Expiry Date</h3>
+    <pre># usermod -e "2022-02-21" username</pre>
+
+    <h3>Locking and Unlocking a User Account</h3>
+    <p>Lock:</p>
+    <pre># usermod -L USER</pre>
+    <p>Unlock:</p>
+    <pre># usermod -U USER</pre>
+
+    <h2>Checking User and Group Information</h2>
+    <pre># id username  (Check User ID and Group ID)
+# chage -l username  (Verify User's Password Info)</pre>
+
+    <h2>Password Expiry Management</h2>
+    <pre># chage -m 5 username  (Set minimum password expiry to 5 days)
+# chage -M 20 username (Set maximum password expiry to 20 days)
+# chage -W 5 username  (Set password warning period to 5 days)
+# chage -I 5 username  (Set password inactive date to 5 days)</pre>
+
+    <h3>To force a password change after first login</h3>
+    <pre># chage -d 0 username</pre>
+
+    <h2>Group Management</h2>
+    <h3>To create a group</h3>
+    <pre># groupadd groupname</pre>
+
+    <h3>To add a user into a group</h3>
+    <pre># gpasswd -a user group
+# usermod -a -G group user</pre>
+
+    <h3>To change a user's GID</h3>
+    <pre># groupmod -g GID username</pre>
+
+    <h3>To change a group's GID</h3>
+    <pre># groupmod -g GID groupname</pre>
+
+    <h3>To rename a group</h3>
+    <pre># groupmod -n newgroup oldgroup</pre>
+
+    <h2>Lock and Unlock User Password</h2>
+    <pre># passwd -l username (Lock password)
+# passwd -u username (Unlock password)</pre>
+</body>
+</html>

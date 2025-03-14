@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Linux Disk Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    <h1>LINUX DISK MANAGEMENT</h1>
+    
+    <h2>What is file system?</h2>
+    <p>File System is a method to store and organize files and directories on disk. A file system can have different formats called file system types. These formats determine how the information is stored as files and directories.</p>
+    
+    <h2>Hard disk & pendrive</h2>
+    
+    <h2>Windows file system</h2>
+    <ul>
+        <li>FAT</li>
+        <li>FAT32</li>
+        <li>NTFS</li>
+    </ul>
+    
+    <h2>Linux file system</h2>
+    <ul>
+        <li>ext1</li>
+        <li>ext2</li>
+        <li>ext3</li>
+        <li>ext4 - Default file system in RHEL/OEL- 6</li>
+        <li>XFS - Default filesystem in RHEL/OEL - 7/8/9</li>
+        <li>BTRFS</li>
+    </ul>
+    
+    <h2>swap</h2>
+    
+    <h2>CD/DVD</h2>
+    <p>iso9660</p>
+    
+    <h2>Ext2</h2>
+    <ul>
+        <li>Ext2 stands for second extended file system.</li>
+        <li>Ext2 does not have journaling feature.</li>
+        <li>Maximum individual file size can be from 16 GB to 2 TB.</li>
+        <li>Overall ext2 file system size can be from 2 TB to 32 TB.</li>
+    </ul>
+    
+    <h2>Ext3</h2>
+    <ul>
+        <li>Ext3 stands for third extended file system.</li>
+        <li>Starting from Linux Kernel 2.4.15 ext3 was available.</li>
+        <li>The main benefit of ext3 is that it allows journaling.</li>
+        <li>Journaling has a dedicated area in the file system, where all the changes are tracked.</li>
+        <li>Maximum individual file size can be from 16 GB to 2 TB.</li>
+        <li>Overall ext3 file system size can be from 2 TB to 32 TB.</li>
+    </ul>
+    
+    <h2>Ext4</h2>
+    <ul>
+        <li>Ext4 stands for fourth extended file system.</li>
+        <li>Introduced in 2008.</li>
+        <li>Supports huge individual file size and overall file system size.</li>
+        <li>Maximum individual file size can be from 16 GB to 16 TB.</li>
+        <li>Overall maximum ext4 file system size is 1 EB (exabyte).</li>
+    </ul>
+    
+    <h2>XFS File System</h2>
+    <ul>
+        <li>The XFS file system is an extension of the extent file system.</li>
+        <li>The XFS is a high-performance 64-bit journaling file system.</li>
+        <li>RHEL 7.0 uses XFS as the default filesystem.</li>
+    </ul>
+    
+    <h2>Create an ext4 file system:</h2>
+    <pre>#mkfs.ext4 /dev/sdb1
+#mkfs -t ext4 /dev/sdb1
+#mke2fs -t ext4 /dev/sdb1</pre>
+    
+    <h2>Create an xfs file system:</h2>
+    <pre>#mkfs.xfs /dev/sdb1
+#mkfs -t xfs /dev/sdb1</pre>
+    
+    <h2>Partition Table</h2>
+    <p>Partition can be considered as a piece of disk space...</p>
+    
+    <h2>Commands to create partition</h2>
+    <pre>#fdisk
+# fdisk -l
+# fdisk /dev/sdb</pre>
+    
+    <h2>Mount the file system</h2>
+    <pre>#mkdir /oracle
+mount /dev/sdb1 /oracle
+#mount
+#umount</pre>
+    
+    <h2>Command to check the mounted filesystem</h2>
+    <pre>#df -h
+#df -hT
+#lsblk</pre>
+    
+    <h2>Permanent mount file</h2>
+    <pre>/etc/fstab</pre>
+    
+    <h2>Resizing the file system</h2>
+    <h3>ext4 file system</h3>
+    <pre>#resize2fs &lt;mount point&gt;</pre>
+    
+    <h3>xfs file system</h3>
+    <pre>#xfs_growfs &lt;mount point&gt;</pre>
+    
+    <h2>Create filesystem using raw disk</h2>
+    <pre>#mkfs.xfs /dev/sdb
+#mount /dev/sdb /data1</pre>
+    
+    <h2>Create filesystem with partition</h2>
+    <pre>#fdisk /dev/sdc
+#mkfs.xfs /dev/sdc1
+#mkfs.xfs /dev/sdc2</pre>
+</body>
+</html>

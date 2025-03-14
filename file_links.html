@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft Link vs Hard Link</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    <h1>What is Soft Link?</h1>
+    <p>A symbolic link, also known as symlink or soft link, is a special type of file that points to a source file or directory in Linux.</p>
+    <p>It is like a shortcut in Windows which contains the path of the original file and not the contents.</p>
+    <pre>
+    # ln -s &lt;sourcefile&gt;  &lt;dest file&gt;
+    # ln -s &lt;sourcefile full path&gt;  &lt;dest file path&gt;
+    </pre>
+    
+    <h1>What is Hard Link?</h1>
+    <p>A hard link is a mirror copy of the original file. Deleting the original file will not impact anything, because the hard link file will act as a mirror copy of the original file.</p>
+    <pre>
+    # ln &lt;source file&gt; &lt;destination file&gt;
+    # unlink &lt;file/dir&gt;
+    </pre>
+    
+    <h1>Difference Between Soft and Hard Link</h1>
+    <h2>Soft Link</h2>
+    <ul>
+        <li>Soft link is similar to the file shortcut in Windows.</li>
+        <li>Changes in both files will reflect simultaneously.</li>
+        <li>Soft links can be created on different file systems.</li>
+        <li>Soft links can be created for files and directories.</li>
+        <li>It has a different inode number and file permissions compared to the original file.</li>
+        <li>When the original file is removed, the link will be inaccessible (hanging link).</li>
+    </ul>
+    
+    <h2>Hard Link</h2>
+    <ul>
+        <li>Hard link is a mirror copy of the original file.</li>
+        <li>It is like a soft link.</li>
+        <li>Hard links can only be created on the same file system.</li>
+        <li>Only files can be linked.</li>
+        <li>It has the same inode number and file permissions.</li>
+        <li>Nothing happens when the original file is removed.</li>
+    </ul>
+    
+    <h1>What Is The Inode Number?</h1>
+    <p>An inode is a data structure that is used to store information of files on your Linux system.</p>
+    <p>The number of inodes shows the number of files and directories you have on the system.</p>
+    <p>Every inode in the Linux structure has a unique number identified with it. It is also called the index number and has the following attributes:</p>
+    <ul>
+        <li>Size</li>
+        <li>Owner</li>
+        <li>Date/time</li>
+        <li>Permissions and access control</li>
+        <li>Location on the disk</li>
+        <li>File types</li>
+        <li>Number of links</li>
+        <li>Additional metadata about the file</li>
+    </ul>
+    
+    <h2>To check the list of inode numbers, use the following command:</h2>
+    <pre>
+    # ls -li
+    # stat &lt;file/dir&gt;
+    </pre>
+</body>
+</html>

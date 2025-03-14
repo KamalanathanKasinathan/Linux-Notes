@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>I/O Redirection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+  </head>
+  <body>
+      <script src="header.js"></script>
+    
+    <h1>I/O Redirection</h1>
+    
+    <h2>Standard Input/Output Redirection</h2>
+    <ul>
+        <li><strong>stdin (0)</strong> - Standard input to the program. (<code>0&lt;</code>)</li>
+        <li><strong>stdout (1)</strong> - Standard output from the program. (<code>1&gt;</code>)</li>
+        <li><strong>stderr (2)</strong> - Standard error output from the program. (<code>2&gt;</code>)</li>
+    </ul>
+    
+    <h2>Redirection Commands</h2>
+    <pre>
+Purpose                                      Command
+------------------------------------------------------------
+Redirect standard output to filename         > filename or 1> filename
+Append standard output to filename           >> filename
+Append stdout and stderr to filename         >> filename 2>&1 or 1>> filename 2>&1
+Take input from filename                     < filename or 0< filename
+Redirect standard error to filename          2> filename
+Redirect stdout and stderr to file           1> filename 2>&1 or > filename 2>&1
+    </pre>
+    
+    <h2>Standard INPUT/OUTPUT Channels</h2>
+    <ol>
+        <li>Standard INPUT (keyboard)</li>
+        <li>Standard OUTPUT (terminal/monitor)</li>
+        <li>Standard ERROR (terminal/monitor)</li>
+    </ol>
+    
+    <h2>Examples of I/O Redirection</h2>
+    <h3>To Redirect Standard Output</h3>
+    <pre>
+# command > file  --> Redirect standard output to a file
+# command >> file --> Redirect and append standard output to a file
+    </pre>
+    
+    <h3>To Redirect Standard Input</h3>
+    <pre>
+# command < file  --> Send a file as input to a command
+    </pre>
+    
+    <h3>To Redirect Standard Error</h3>
+    <pre>
+# command 2> file  --> Redirect standard error to a file
+# command 2>> file --> Append standard error to a file
+# command &> file  --> Redirect standard output and error to a file
+    </pre>
+    
+    <h3>Examples</h3>
+    <pre>
+# Redirect standard output into a file
+  date > todayscommand
+
+# Append standard output into a file
+  cal >> todayscommand
+  hostnamectl >> todayscommand
+
+# Redirect standard input from a file to a command
+  tr "a-z" "A-Z" < softenfile
+  sort < filename
+
+# Redirect standard error into a file
+  data 2> filename
+
+# Append standard error into a file
+  hello 2>> filename
+    </pre>
+</body>
+</html>

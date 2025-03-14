@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File and Directory Commands</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+    
+</head>
+<body>
+
+    <script src="header.js"></script>
+    <h1>Command to Create Directory</h1>
+    <pre>
+# mkdir [option] dir_name
+# mkdir dir1
+    </pre>
+    
+    <h2>Create Multiple Directories</h2>
+    <pre>
+# mkdir dir1 dir2
+# mkdir dir{1..10}
+    </pre>
+    
+    <h2>Create Parent Directories</h2>
+    <pre>
+# mkdir -p /opt/sport/test/dir1
+    </pre>
+    
+    <h1>Command to Create File</h1>
+    <pre>
+# touch file1
+# touch file1 file2 file3
+# touch file{1..10}
+    </pre>
+    
+    <h2>Create and Overwrite a File</h2>
+    <pre>
+# cat > testfile1
+This is test file
+ctrl+D
+    </pre>
+    
+    <h2>Append Data to a File</h2>
+    <pre>
+# cat >> testfile1
+This is second line to append
+test data
+ctrl+D
+    </pre>
+    
+    <h1>View File Content</h1>
+    <pre>
+# cat <file_name>
+    </pre>
+    
+    <h1>Remove File</h1>
+    <pre>
+rm file1
+rm -f dir1
+    </pre>
+    
+    <h1>Remove Directory</h1>
+    <pre>
+# rmdir dir1
+# rm -r dir1
+# rm -rf dir1
+    </pre>
+    
+    <h1>Change Directory</h1>
+    <pre>
+cd <dir_name> - move/navigate to a directory
+cd <dir_name>/<dir2_name>/<dir3_name>
+
+cd ../ - move to the parent directory
+cd ../..
+cd - - will change the user to the old directory.
+cd - move to user home directory
+cd ~ - move to user home directory
+    </pre>
+    
+    <h1>List Files</h1>
+    <pre>
+ls
+ls -l
+ls -ld
+ls -la
+ls -ltr
+ls -iR
+    </pre>
+    
+    <h1>ls Command Options</h1>
+    <pre>
+# ls -iadRrlt
+i to list the file's inode number
+a to list the hidden files and folders
+d to list only directories
+R to list the tree structure of a directory
+l to list all information about files and folders
+r to list files and folders in reverse order
+t to list files and folders according to timestamp
+    </pre>
+    
+    <h1>Print Working Directory</h1>
+    <pre>
+# pwd - print present working directory
+    </pre>
+    
+    <h1>Fundamental File Types in Linux</h1>
+    <pre>
+- a regular file
+d a directory/folder
+l link file
+s socket file (stores information of kernel)
+p pipe file
+c character file (example terminal)
+b block file (device file)
+    </pre>
+    
+    <h1>File Viewing Commands</h1>
+    <pre>
+# cat <filename>
+# cat /etc/ssh/sshd_config
+
+# cat /etc/ssh/sshd_config | head
+# cat /etc/ssh/sshd_config | head -20
+# head -n 20 /etc/ssh/sshd_config
+
+# cat /etc/ssh/sshd_config | tail -n 15
+# tail /etc/ssh/sshd_config
+
+# cat /etc/ssh/sshd_config | less
+# less /etc/ssh/sshd_config
+
+# cat /etc/ssh/sshd_config | more
+# more /etc/ssh/sshd_config
+    </pre>
+    
+    <h1>grep Command</h1>
+    <pre>
+cat /etc/passwd | grep balaji
+cat /etc/passwd | grep -i balaji
+cat /etc/passwd | grep -v balaji
+cat /etc/passwd | grep -A2 balaji
+cat /etc/passwd | grep -B2 balaji
+# cat /etc/passwd | grep -E 'balaji|hari'
+    </pre>
+    
+    <h1>Copy File to Another Directory</h1>
+    <pre>
+# cp <source_file> <destination_file>
+# cp my_file.txt /tmp
+# cp /etc/my_file.txt /tmp
+    </pre>
+    
+    <h1>Copy Multiple Files</h1>
+    <pre>
+# cp my_file.txt my_file2.txt my_file3.txt /new_directory
+    </pre>
+    
+    <h1>Copy Directories</h1>
+    <pre>
+# cp -R <source_folder> <destination_folder>
+# cp -R /etc /etc_backup
+    </pre>
+    
+    <h1>Copy Multiple Directories</h1>
+    <pre>
+# cp -R /etc/* /home/* /backup_folder
+    </pre>
+    
+    <h1>Move Files and Directories</h1>
+    <pre>
+# mv file1 /tmp/
+# mv test-dir /tmp/
+    </pre>
+    
+    <h1>Rename Files and Directories</h1>
+    <pre>
+# mv file1 file2
+# mv test-dir test-1
+    </pre>
+    
+    <h1>Other Commands</h1>
+    <pre>
+clear
+echo 'This test file' > file1
+uname
+ifconfig
+df -h
+command; command;
+whoami
+who am i
+w
+    </pre>
+</body>
+</html>

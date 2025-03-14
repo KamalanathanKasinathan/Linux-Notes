@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YUM Commands Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    
+    <h1>YUM (Yellowdog Updater Modified) Commands</h1>
+    <p>YUM is an open-source command-line and graphical-based package management tool for RPM-based Linux systems. It allows users and system administrators to easily install, update, remove, or search software packages on a system.</p>
+    
+    <h2>1. Install a Package with YUM</h2>
+    <pre># yum install firefox
+# dnf install firefox
+# yum install firefox httpd</pre>
+    
+    <h2>2. Removing a Package with YUM</h2>
+    <pre># yum remove firefox
+# yum remove firefox httpd
+# dnf remove firefox httpd</pre>
+    
+    <h2>3. Updating a Package using YUM</h2>
+    <pre># yum update mysql
+# dnf update mysql</pre>
+    
+    <h2>4. List a Package using YUM</h2>
+    <pre># yum list openssh
+# dnf list openssh</pre>
+    
+    <h2>5. Search for a Package using YUM</h2>
+    <pre># yum search vsftpd</pre>
+    
+    <h2>6. Get Information about a Package using YUM</h2>
+    <pre># yum info firefox</pre>
+    
+    <h2>7. List all Available Packages using YUM</h2>
+    <pre># yum list | less</pre>
+    
+    <h2>8. List all Installed Packages using YUM</h2>
+    <pre># yum list installed | less</pre>
+    
+    <h2>9. Yum Provides Function</h2>
+    <pre># yum provides /etc/httpd/conf/httpd.conf</pre>
+    
+    <h2>10. Check for Available Updates using Yum</h2>
+    <pre># yum check-update</pre>
+    
+    <h2>11. Update System using Yum</h2>
+    <pre># yum update</pre>
+    
+    <h2>12. List Enabled Yum Repositories</h2>
+    <pre># yum repolist</pre>
+    
+    <h2>13. List all Enabled and Disabled Yum Repositories</h2>
+    <pre># yum repolist all</pre>
+    
+    <h2>14. Install a Package from a Specific Repository</h2>
+    <pre># yum --enablerepo=epel install phpmyadmin</pre>
+    
+    <h2>15. Clean Yum Cache</h2>
+    <pre># yum clean all</pre>
+    
+    <h2>16. View History of Yum</h2>
+    <pre># yum history
+# yum history undo 21
+# yum history redo 30</pre>
+    
+    <h2>17. Enable and Disable Repository</h2>
+    <pre># yum-config-manager --disable Localrepo_BaseOS
+# yum-config-manager --enable Localrepo_BaseOS
+# yum --disablerepo=* --enablerepo=appstream repolist</pre>
+</body>
+</html>

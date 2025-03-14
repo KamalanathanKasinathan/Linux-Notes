@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sudo Guide</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    
+    <h1>What is sudo?</h1>
+    <p><strong>Sudo (super user do)</strong> runs a command as root, whereas <code>su</code> makes you the root user.</p>
+    <p><code>sudo</code> allows a permitted user to execute a command as a superuser as specified in the <code>sudoers</code> file.</p>
+    <p>Sudo runs a single command with root privileges. It does not switch to the root user or require a separate root user password.</p>
+    
+    <h2>Syntax for Individual User:</h2>
+    <pre>
+User  HOST=RunAs NOPASSWD:COMMAND
+mahesh ALL=(ALL) ALL
+balaji ALL=(ALL) ALL
+
+User  HOST=RunAs(user) NOPASSWD:COMMAND
+mahesh ALL=(balaji) ALL
+    </pre>
+    
+    <h2>Syntax for Individual Group:</h2>
+    <pre>
+%group  HOST=RunAs NOPASSWD:COMMAND
+%admin ALL=ALL ALL
+    </pre>
+    
+    <h2>Syntax for User_Alias:</h2>
+    <pre>
+ALIAS_VARIABLE  HOST=RunAs NOPASSWD:COMMAND
+    </pre>
+    
+    <h2>Editing the sudoers file:</h2>
+    <pre>
+# vi /etc/sudoers
+
+balaji ALL=(ALL) NOPASSWD:/usr/bin/systemctl restart crond.service, PASSWD:/usr/bin/systemctl status crond.service
+mahesh ALL=(ALL) ALL
+daniel ALL=(ALL) !/bin/su !/bin/bash !/reboot
+niresh ALL=(daniel) ALL
+    </pre>
+    
+    <h2>Checking sudo privileges:</h2>
+    <pre>
+sudo -l
+sudo -U username -l
+    </pre>
+    
+    <h2>Change Your Interactive Shell:</h2>
+    <pre>
+sudo -i
+    </pre>
+    
+    <h2>List User Privileges:</h2>
+    <pre>
+sudo -l (OR) sudo --list
+    </pre>
+    
+    <h2>Checking Logs:</h2>
+    <pre>
+cat /var/log/secure
+    </pre>
+    
+    <h2>Editing sudoers securely:</h2>
+    <pre>
+# visudo
+    </pre>
+    
+    <h2>Aliases in sudoers file:</h2>
+    <pre>
+User_Alias
+Host_Alias
+Cmnd_Alias
+    </pre>
+    
+    <h2>Example Alias Configuration:</h2>
+    <pre>
+Host_Alias     MAILSERVERS = smtp, smtp2
+Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp
+User_Alias ADMINS = mahesh, niresh, daniel
+
+User_Alias ADMINS = balaji, muthu, vicky
+Cmnd_Alias ALLOW_CMD = /usr/sbin/fdisk ,/usr/sbin/useradd
+Cmnd_Alias DENY_CMD=!/bin/su,!/usr/sbin/reboot,!/usr/bin/passwd
+    </pre>
+    
+    <h2>Applying Alias Configurations:</h2>
+    <pre>
+ADMINS ALL=(ALL) ALLOW_CMD,DENY_CMD
+
+# daniel ALL=(ADMINS)    NOPASSWD: PROCESSES ,DELEGATING
+ADMINS  ALL=(ALL)       NOPASSWD: PROCESSES ,DELEGATING
+balaji  ALL=(ALL)       NOPASSWD: PROCESSES #,DELEGATING
+
+user1 ALL=(ALL) NOPASSWD: ALL
+user2 ALL=(ALL) NOPASSWD: /bin/echo /bin/ls
+    </pre>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VI Editor Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    <h1>VI Editor</h1>
+    <h2>Windows</h2>
+    <p>Notepad<br>Notepad++</p>
+    <h2>Linux</h2>
+    <p><strong>CLI</strong> - vi, vim, nano, ex<br><strong>GUI</strong> - getit, gvim, picp, netit, emacs</p>
+    <h3>1) cat</h3>
+    <p>cat (concatenate) command allows us to create single file, view contents of file, concatenate files and redirect output in terminal or files.</p>
+    <p><strong>Example of creating file or files using cat command:</strong></p>
+    <pre># cat &gt; filename</pre>
+    <p><strong>To create hidden file:</strong></p>
+    <pre># cat &gt; .file</pre>
+    <h3>2) touch</h3>
+    <p>The touch command is the easiest way to create new, empty files that is 0kb file.</p>
+    <p><strong>Example of creating file or files using touch command:</strong></p>
+    <h4>To create an empty file</h4>
+    <pre># touch file1</pre>
+    <h4>To create multiple empty files</h4>
+    <pre># touch file1 file2 file3 file4<br># touch file{1..4}</pre>
+    <h4>To create hidden empty file</h4>
+    <pre># touch .hiddenfile</pre>
+    <h2>Tools to Create File</h2>
+    <ul>
+        <li>Cat (concatenate)</li>
+        <li>Vim (Visual Instrument iMproved)</li>
+        <li>Touch</li>
+        <li>Vi (Visual Instrument)</li>
+        <li>Nano</li>
+    </ul>
+    <h2>1) vi (Visual Instrument)</h2>
+    <p>A screen-oriented text editor originally created for the Unix operating system.</p>
+    <pre># vi filename</pre>
+    <pre># vi .filename</pre>
+    <h2>2) vim (Visual Instrument iMproved)</h2>
+    <p>The vim editor is an enhanced version of vi.</p>
+    <pre># yum install vim-enhanced -y</pre>
+    <pre># vim filename</pre>
+    <pre># vim .filename</pre>
+    <h2>3) nano</h2>
+    <p>This is a command-line notepad.</p>
+    <pre># nano filename</pre>
+    <h2>What is the Difference Between Vim and Vi?</h2>
+    <p><strong>Vim:</strong> Basically 'vim' is a text editor which opens a blank file which you can edit and save it. By using vim editor, file content can be encrypted.</p>
+    <p><strong>Vi:</strong> File content cannot be encrypted.</p>
+    <h2>Vi, Vim, Gvim Editor Modes</h2>
+    <ul>
+        <li><strong>Command Mode</strong> - press Esc (default mode)</li>
+        <li><strong>Insert Mode</strong> - press i, I, A, a, o, O</li>
+        <li><strong>Execution Mode (or Escape Mode)</strong> - : (shift + ;)</li>
+    </ul>
+    <h3>Command Mode (default mode)</h3>
+    <pre>
+yy --> to copy a line
+3yy --> to copy three lines
+p --> to paste below the cursor
+P --> to paste above the cursor
+4p --> to paste copied line 4 times
+dd --> to delete a line
+4dd --> to delete 4 lines
+shift + g(G) --> moves cursor to end of file
+gg --> moves cursor to beginning of file
+/word --> to search a keyword
+n --> next search
+N --> previous search
+u --> undo
+ctrl + r --> redo
+    </pre>
+    <h3>To Move Cursor in Command Mode</h3>
+    <pre>
+h - move left
+j - move down
+k - move up
+l - move right
+    </pre>
+    <h3>To Save and Quit from Command Mode</h3>
+    <pre>
+shift + zz
+    </pre>
+    <h3>Insert Mode</h3>
+    <pre>
+i --> insert text
+I --> insert text at beginning of line
+a --> add text after cursor
+A --> add text at end of line
+o --> insert text one line below cursor
+O --> insert text one line above cursor
+    </pre>
+    <h3>Ex Mode (Extended Command Mode)</h3>
+    <pre>
+:q --> quit without saving
+:q! --> force quit
+:w --> save changes
+:w! --> force save changes
+:wq --> save and quit
+:wq! --> force save and quit
+:x --> save and quit
+:X --> encrypt file contents
+:25 --> move cursor to 25th line
+:set nu --> set line numbers
+:set nonu --> remove line numbers
+:5d --> delete 5th line
+:$d --> delete last line
+:3,6d --> delete lines 3 to 6
+:$ --> move cursor to last line
+    </pre>
+    <h3>To Search a Word and Replace It</h3>
+    <pre>:%s/old/new/g</pre>
+    <h3>Without Opening a File - Find and Replace a Word</h3>
+    <pre># sed -e "s/old/new/g" filename</pre>
+</body>
+</html>

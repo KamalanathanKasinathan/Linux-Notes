@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Networking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+   
+    <h1>Linux Networking</h1>
+    
+    <h2>Classful Subnet Masks</h2>
+    <ul>
+        <li><strong>Class A</strong> – The classful subnet mask is /8. The number of possible IP addresses is 16,777,216 (2<sup>24</sup>).</li>
+        <li><strong>Class B</strong> – The classful subnet mask is /16. The number of addresses is 65,536.</li>
+        <li><strong>Class C</strong> – The classful subnet mask is /24. Only 256 addresses are available.</li>
+    </ul>
+
+    <h2>Set the Dynamic IP Address</h2>
+    <pre>
+Select VM ---> Settings ---> Add Network Adapter
+
+# ifconfig (check the IF name)
+# nmcli device show
+# nmcli device connect ens160
+    </pre>
+
+    <h2>Set the Static IP Address</h2>
+    <pre>
+Select VM ---> Settings ---> Add Network Adapter
+
+# ifconfig (check the IF name)
+# nmcli device show
+# nmcli connection status
+
+# nmcli con add type ethernet con-name ens160 ifname ens160 ipv4.addresses 192.168.159.51/24 ipv4.gateway 192.168.0.1 autoconnect yes ipv4.method manual
+# nmcli con add type ethernet con-name ens160 ifname ens160 ip4 192.168.159.51/24 gw4 192.168.0.1 autoconnect yes ipv4.method manual
+    </pre>
+
+    <h2>Command to Check Gateway</h2>
+    <pre>
+# netstat -rn
+# route -n
+    </pre>
+
+    <h2>To Check Ethernet Card Status</h2>
+    <pre>
+# ethtool ens160
+# ethtool ens192
+    </pre>
+
+    <h2>Connection Modify</h2>
+    <pre>
+# nmcli con modify ens160 ipv4.addresses 192.168.2.100/24
+# nmcli con mod ens160 ipv4.gateway 192.168.2.1
+# nmcli con mod ens160 ipv4.dns 8.8.8.8
+# nmcli con mod ens160 ipv4.method manual
+# nmcli con mod ens160 connection.autoconnect yes
+
+# nmcli con modify ens160 ipv4.addresses 192.168.2.100/24 ipv4.gateway 192.168.2.1 ipv4.method manual connection.autoconnect yes
+    </pre>
+
+    <h2>To Monitor IP Packets</h2>
+    <pre>
+iptraf-ng
+    </pre>
+</body>
+</html>

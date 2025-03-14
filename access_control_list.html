@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Control List (ACL)</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <script src="header.js"></script>
+    
+    <h1>Access Control List (ACL)</h1>
+    <p>An access ACL is the access control list on a specific file or directory for specific users or group members.</p>
+    
+    <h2>To verify the default ACL on a file/folder</h2>
+    <pre># getfacl file/foldername</pre>
+    
+    <h2>To set ACL on a file for a specific user</h2>
+    <pre>
+# setfacl -m u:username:rwx filename
+# setfacl -m 'u:username:7' filename
+    </pre>
+    
+    <h2>To set ACL on a file for a specific group</h2>
+    <pre>
+# setfacl -m g:groupname:rwx filename
+# setfacl -m g:groupname:7 filename
+    </pre>
+    
+    <h2>To remove ACL on a file for a specific user</h2>
+    <pre>setfacl -x u:username /secure</pre>
+    
+    <h2>To remove ACL on a file for a specific group</h2>
+    <pre>setfacl -x g:username /secure</pre>
+    
+    <h2>To remove all ACL</h2>
+    <pre>
+# setfacl -b file/directory  # Removing all ACL from file/directory
+    </pre>
+    
+    <h2>Additional Commands</h2>
+    <pre>
+getfacl -R /secure
+# setfacl -R -m g:groupname:rwx filename
+setfacl -x u:balaji:rwx
+getfacl 
+setfacl -b
+    </pre>
+</body>
+</html>
