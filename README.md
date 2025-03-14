@@ -54,7 +54,3 @@ Linux-Notes/
 
 ## Contribution
 Feel free to contribute by adding new topics or improving existing content. Submit a pull request or open an issue if you have suggestions.
-
-## License
-This project is open-source and available under the MIT License.
-
